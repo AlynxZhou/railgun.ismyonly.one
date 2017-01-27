@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>某科学的图标生成器</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link href="//fonts.css.network/css?family=Noto+Sans:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+		<style type="text/css">
+			* {
+			    margin: 0;
+			    padding: 0;
+			}
+			::selection {
+			    background: #222;
+			    color: white;
+			}
+			a {
+			    color: #333;
+			}
+			p {
+			    margin: 20px 0;
+			}
+			ul, ol {
+			    //list-style: none;
+			}
+			body {
+			    font: 16px/1.8 "Noto Sans", "Noto Sans CJK", "Lato", "Microsoft Jhenghei", "Hiragino Sans GB", "Microsoft YaHei", arial, sans-serif;
+			    color: #333;
+			    text-shadow: 4px 4px 4px #aaa;
+			    position: relative;
+			    margin: 20px auto 20px auto;
+			    width: 960px;
+			    text-align: center;
+			    position: relative;
+			    //top: -10px;
+			    //opacity: 0;
+			}
+			@media (max-width: 767px) {
+			    body {
+				margin-top: 20px;
+				width: auto;
+			    }
+			}
+			hr {
+			    margin: 40px 0;
+			    height: 3px;
+			    border: none;
+			    margin-left:auto;
+			    margin-right:auto;
+			    width: auto;
+			    position: relative;
+			    display: block;
+			    box-sizing: content-box;
+			    background-color: #ddd;
+			    background-image: repeating-linear-gradient(-45deg, #fff, #fff 4px, transparent 4px, transparent 8px);
+			}
+			.inputForm {
+				font-size: 20px;
+				border-radius: 5px;
+				display: inline-block;
+				border: 3px solid #555;
+				padding: 20px 20px 20px 20px;
+				margin: 20px 20px 20px 20px;
+			}
+			.inputForm input {
+				font-size: 20px;
+			}
+			button {
+				font-size: 20px;
+				padding: 10px 10px 10px 10px;
+			}
+		</style>
+		<script type="text/javascript">
+			function convertCanvasToImage(canvas) {
+				var image = new Image();
+				image.src = canvas.toDataURL("image/png");
+				return image;
+			}
+			function appendImage() {
+				var canvas, imageDiv;
+				canvas = document.getElementById("canvas");
+				imageDiv = document.getElementById("imageDiv");
+				imageDiv.appendChild(convertCanvasToImage(canvas));
+			}
+			function preview() {
+				// Magic numbers! DO NOT EDIT!
+				var canvas = document.getElementById("canvas");
+				var text1 = document.getElementById("text1");
+				var text2 = document.getElementById("text2");
+				var text3 = document.getElementById("text3");
+				var width = Math.max(260 + text1.value.length * 130 - text1.value.length * 5 + 10,
+						     210 + text2.value.length * 90 + text2.value.length * 5 + 30,
+					     	     215 + 40 * text3.value.length + 50);
+				canvas.width = width.toString();
+				ctx = canvas.getContext("2d");
+				// ctx.fillStyle = "white";
+				// ctx.fillRect(0, 0, canvas.width, canvas.height);
+				gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+				gradient.addColorStop(1, "rgb(235, 115, 52)");
+				gradient.addColorStop(0.3,"rgb(234, 85, 45)");
+				gradient.addColorStop(0,"rgb(233, 30, 30)");
+				ctx.fillStyle = gradient;
+				ctx.font = "140px 宋体 bold";
+				ctx.fillText('と', 10, 130);
+				ctx.font = "90px 宋体";
+				ctx.fillText('あ', 120, 130);
+				ctx.fillText('る', 190, 110);
+				ctx.font = "130px 宋体";
+				var x = 130;
+				var y = 130;
+				var i = 0;
+				for (i = 0; i < text1.value.length; i++) {
+					ctx.font = (130 - i * 10).toString() + "px 宋体";
+					x += (130 - i * 10);
+					if (i % 2)
+						y -= (i * (15 - i));
+					else
+						y += (i * (15 - i));
+					ctx.fillText(text1.value.charAt(i), x, y);
+				}
+				// ctx.font = "140px 宋体";
+				ctx.font = (130 - i * 10).toString() + "px 宋体";
+				x += (130 - i * 10);
+				if (i % 2)
+					y -= (i * (15 - i * 3));
+				else
+					y += (i * (15 - i * 3));
+				ctx.fillText('の', x, y);//250 + (text1.value.length - 1) * 120, 120);
+				x = 120;
+				y = 270;
+				for (i = 1; i < text2.value.length - 1; i++) {
+					ctx.font = (90 + i * 10).toString() + "px 宋体";
+					x += (90 + i * 10);
+					if (i % 2)
+						y -= (i * (15 - i * 3));
+					else
+						y += (i * (15 - i * 3));
+					if (y < 270)
+						y = 270;
+					if (y >290)
+						y = 290;
+					ctx.fillText(text2.value.charAt(i), x, y);
+				}
+				// ctx.font = "140px 宋体";
+				ctx.font = (90 + i * 10).toString() + "px 宋体";
+				x += (90 + i * 10);
+				if (i % 2)
+					y -= (i * (15 - i));
+				else
+					y += (i * (15 - i));
+				ctx.fillText(text2.value.charAt(text2.value.length - 1), x, y);
+				ctx.font = "140px 宋体";
+				ctx.fillRect(70, 175, 140, 140);
+				ctx.fillStyle = "white";
+				ctx.fillText(text2.value.charAt(0), 70, 300);
+				ctx.font = "40px 宋体";
+				ctx.fillStyle = "red";
+				ctx.fillText(text3.value, 215, 330);
+			}
+		</script>
+	</head>
+	<body>
+		<h1>某科学的图标生成器</h1>
+		<h3>在下方输入内容</h3>
+		<form class="inputForm" id="inputForm">
+			某
+			<br>
+			<input type="text" id="text1" name="text1" value="科學">
+			<br>
+			的
+			<br>
+			<input type="text" id="text2" name="text2" value="超電磁炮">
+			<br>
+			（英文）
+			<br>
+			<input type="text" id="text3" name="text3" value="RAILGUN">
+		</form>
+		<br>
+		<button id="preview" onclick="preview()">预览效果</button>
+		<hr>
+		<canvas id="canvas" width="1000" height="350"></canvas>
+		<hr>
+		<button id="getImage" onclick="appendImage()">渲染为图片</button>
+		<hr>
+		<div id="imageDiv"></div>
+		<script type="text/javascript">preview();</script>
+	</body>
+</html>
