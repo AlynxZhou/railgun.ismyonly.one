@@ -92,14 +92,17 @@
 				var text3 = document.getElementById("text3");
 				function length1() {
 					var x = 130;
-					for (i = 0; i <= text1.value.length + 1; i++) {
+					for (i = 0; i < text1.value.length + 1; i++)
 						x += Math.abs(130 - i * 10);
-					}
 					return x + 10;
 				}
-				var width = Math.max(length1(),
-						     210 + text2.value.length * 90 + text2.value.length * (text2.value.length - 1) * 5 + 30,
-					     	     215 + 40 * text3.value.length + 50);
+				function length2() {
+					var x = 210;
+					for (i = 0; i < text2.value.length; i++)
+						x += Math.abs(90 + i * 10);
+					return x + 10;
+				}
+				var width = Math.max(length1(), length2(), 215 + 40 * text3.value.length + 50);
 				canvas.width = width.toString();
 				ctx = canvas.getContext("2d");
 				// ctx.fillStyle = "white";
