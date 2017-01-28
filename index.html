@@ -90,6 +90,8 @@
 				var text1 = document.getElementById("text1");
 				var text2 = document.getElementById("text2");
 				var text3 = document.getElementById("text3");
+				var radio1 = document.getElementById("radio1");
+				var radio2 = document.getElementById("radio2");
 				function length1() {
 					var x = 260;
 					for (i = 0; i <= text1.value.length; i++) {
@@ -116,9 +118,15 @@
 				// ctx.fillStyle = "white";
 				// ctx.fillRect(0, 0, canvas.width, canvas.height);
 				gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-				gradient.addColorStop(1, "rgb(235, 115, 52)");
-				gradient.addColorStop(0.3,"rgb(234, 85, 45)");
-				gradient.addColorStop(0,"rgb(233, 30, 30)");
+				if (radio1.checked) {
+					gradient.addColorStop(1, "rgb(235, 115, 52)");
+					gradient.addColorStop(0.3,"rgb(234, 85, 45)");
+					gradient.addColorStop(0,"rgb(200, 30, 30)");
+				} else if (radio2.checked) {
+					gradient.addColorStop(1, "rgb(52, 115, 235)");
+					gradient.addColorStop(0.3,"rgb(45, 85, 234)");
+					gradient.addColorStop(0,"rgb(30, 30, 200)");
+				}
 				ctx.fillStyle = gradient;
 				ctx.font = "140px 宋体 bold";
 				ctx.fillText('と', 10, 130);
@@ -199,13 +207,12 @@
 					y = 290;
 				ctx.fillText(text2.value.charAt(text2.value.length - 1), x, y);
 				*/
+				ctx.font = "40px 宋体";
+				ctx.fillText(text3.value, 215, 330);
 				ctx.font = "140px 宋体";
 				ctx.fillRect(70, 175, 140, 140);
 				ctx.fillStyle = "white";
 				ctx.fillText(text2.value.charAt(0), 70, 300);
-				ctx.font = "40px 宋体";
-				ctx.fillStyle = "red";
-				ctx.fillText(text3.value, 215, 330);
 			}
 		</script>
 	</head>
@@ -224,6 +231,9 @@
 			（英文）
 			<br>
 			<input type="text" id="text3" name="text3" value="RAILGUN">
+			<br>
+			<input type="radio" id="radio1" name="radio" value="red" checked>科学红
+			<input type="radio" id="radio2" name="radio" value="blue">魔法蓝
 		</form>
 		<br>
 		<button id="preview" onclick="preview()">预览效果</button>
