@@ -66,6 +66,18 @@
 			color: white;
 		}
 
+		.sidebar {
+			float: left;
+			width: 330px;
+			box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.2);
+			padding: 20px 20px 20px 20px;
+			// background-color: green;
+		}
+		.display {
+			// background-color: orange;
+			margin-left: 360px;
+		}
+
 		a {
 			color: #333;
 		}
@@ -129,6 +141,7 @@
 		button {
 			font-size: 20px;
 			padding: 10px 10px 10px 10px;
+			margin-bottom: 20px;
 		}
 	</style>
 	<script type="text/javascript">
@@ -283,28 +296,31 @@
 </head>
 
 <body>
-	<h1>某科学的图标生成器</h1>
-	<h3>在下方输入内容</h3>
-	<form class="inputForm" id="inputForm" defaultbutton="preview">
-		<p>某</p>
-		<input type="text" id="text1" name="text1" value="科學" class="form-control" onkeypress="keyPress(event)">
-		<p>的</p>
-		<input type="text" id="text2" name="text2" value="超電磁炮" class="form-control" onkeypress="keyPress(event)">
-		<p>（英文）</p>
-		<input type="text" id="text3" name="text3" value="RAILGUN" class="form-control" onkeypress="keyPress(event)">
-		<input type="radio" id="radio1" name="radio" value="red" checked onclick="radioOnclick(1)">
-		<label for="radio1">科学红</label>
-		<input type="radio" id="radio2" name="radio" value="blue" onclick="radioOnclick(2)">
-		<label for="radio2">魔法蓝</label>
-	</form>
-	<br>
-	<button id="preview" onclick="preview()" class="btn btn-danger">预览效果</button>
-	<hr>
-	<canvas id="canvas" width="1000" height="350"></canvas>
-	<hr>
-	<button id="getImage" onclick="appendImage()" class="btn btn-danger">渲染为图片</button>
-	<hr>
-	<div id="imageDiv"></div>
+	<div class="sidebar">
+		<h1>某科学的图标生成器</h1>
+		<h3>在下方输入内容</h3>
+		<form class="inputForm" id="inputForm" defaultbutton="preview">
+			<p>某</p>
+			<input type="text" id="text1" name="text1" value="科學" class="form-control" onkeypress="keyPress(event)">
+			<p>的</p>
+			<input type="text" id="text2" name="text2" value="超電磁炮" class="form-control" onkeypress="keyPress(event)">
+			<p>（英文）</p>
+			<input type="text" id="text3" name="text3" value="RAILGUN" class="form-control" onkeypress="keyPress(event)">
+			<input type="radio" id="radio1" name="radio" value="red" checked onclick="radioOnclick(1)">
+			<label for="radio1">科学红</label>
+			<input type="radio" id="radio2" name="radio" value="blue" onclick="radioOnclick(2)">
+			<label for="radio2">魔法蓝</label>
+		</form>
+		<br>
+		<button id="preview" onclick="preview()" class="btn btn-danger">预览效果</button>
+	</div>
+	<div class="display">
+		<canvas id="canvas" width="1000" height="350"></canvas>
+		<hr>
+		<button id="getImage" onclick="appendImage()" class="btn btn-danger">渲染为图片</button>
+		<hr>
+		<div id="imageDiv"></div>
+	</div>
 	<script type="text/javascript">preview();</script>
 	<script color="150,150,150" opacity='0.5' zindex="-2" count="100" src="http://cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
 </body>
