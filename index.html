@@ -91,16 +91,24 @@
 				var text2 = document.getElementById("text2");
 				var text3 = document.getElementById("text3");
 				function length1() {
-					var x = 130;
-					for (i = 0; i <= text1.value.length + 1; i++)
-						x += Math.abs(130 - i * 10);
-					return x + 10;
+					var x = 260;
+					for (i = 0; i <= text1.value.length; i++) {
+						if (130 - i * 10 < 90)
+							x += 90;
+						else
+							x += (130 - i * 10);
+					}
+					return x + 20;
 				}
 				function length2() {
 					var x = 210;
-					for (i = 0; i < text2.value.length; i++)
-						x += Math.abs(90 + i * 10);
-					return x + 10;
+					for (i = 1; i < text2.value.length; i++) {
+						if (90 + 10 * i > 130)
+							x += 130;
+						else
+							x += (90 + i * 10);
+					}
+					return x + 20;
 				}
 				var width = Math.max(length1(), length2(), 215 + 40 * text3.value.length + 50);
 				canvas.width = width.toString();
@@ -118,12 +126,14 @@
 				ctx.fillText('あ', 120, 130);
 				ctx.fillText('る', 190, 110);
 				ctx.font = "130px 宋体";
-				var x = 130;
+				var x = 260;
 				var y = 130;
 				var i = 0;
 				for (i = 0; i < text1.value.length; i++) {
-					ctx.font = Math.abs(130 - i * 10).toString() + "px 宋体";
-					x += Math.abs(130 - i * 10);
+					if (130 - i * 10 < 90)
+						ctx.font = "90px 宋体";
+					else
+						ctx.font = Math.abs(130 - i * 10).toString() + "px 宋体";
 					if (i % 2)
 						y = Math.abs(y - (i * (15 - i)));
 					else
@@ -133,24 +143,32 @@
 					if (y > 130)
 						y = 130;
 					ctx.fillText(text1.value.charAt(i), x, y);
+					if (130 - i * 10 < 90)
+						x += 90;
+					else
+						x += (130 - i * 10);
 				}
 				// ctx.font = "140px 宋体";
-				ctx.font = Math.abs(130 - i * 10).toString() + "px 宋体";
-				x += Math.abs(130 - i * 10);
-				if (i % 2)
-					y = Math.abs(y - (i * (15 - i * 3)));
+				if (130 - i * 10 < 90)
+					ctx.font = "90px 宋体";
 				else
-					y = Math.abs(y + (i * (15 - i * 3)));
+					ctx.font = Math.abs(130 - i * 10).toString() + "px 宋体";
+				if (i % 2)
+					y = Math.abs(y - (i * (15 - i)));
+				else
+					y = Math.abs(y + (i * (15 - i)));
 				if (y < 110)
 					y = 110;
 				if (y > 130)
 					y = 130;
 				ctx.fillText('の', x, y);//250 + (text1.value.length - 1) * 120, 120);
-				x = 120;
+				x = 210;
 				y = 270;
-				for (i = 1; i < text2.value.length - 1; i++) {
-					ctx.font = Math.abs(90 + i * 10).toString() + "px 宋体";
-					x += Math.abs(90 + i * 10);
+				for (i = 1; i < text2.value.length; i++) {
+					if (90 + 10 * i > 130)
+						ctx.font = "130px 宋体";
+					else
+						ctx.font = Math.abs(90 + i * 10).toString() + "px 宋体";
 					if (i % 2)
 						y = Math.abs(y - (i * (15 - i * 3)));
 					else
@@ -160,10 +178,17 @@
 					if (y >290)
 						y = 290;
 					ctx.fillText(text2.value.charAt(i), x, y);
+					if (90 + 10 * i > 130)
+						x += 130;
+					else
+						x += (90 + i * 10);
 				}
 				// ctx.font = "140px 宋体";
-				ctx.font = Math.abs(90 + i * 10).toString() + "px 宋体";
-				x += Math.abs(90 + i * 10);
+				/*
+				if (90 + 10 * i > 130)
+					ctx.font = "130px 宋体";
+				else
+					ctx.font = Math.abs(90 + i * 10).toString() + "px 宋体";
 				if (i % 2)
 					y = Math.abs(y - (i * (15 - i)));
 				else
@@ -173,6 +198,7 @@
 				if (y >290)
 					y = 290;
 				ctx.fillText(text2.value.charAt(text2.value.length - 1), x, y);
+				*/
 				ctx.font = "140px 宋体";
 				ctx.fillRect(70, 175, 140, 140);
 				ctx.fillStyle = "white";
