@@ -83,6 +83,11 @@
 			margin-right: 10px;
 		}
 
+		.busuanzi {
+			margin-top: 30px;
+			margin-bottom: 30px;
+		}
+
 		a {
 			color: #333;
 		}
@@ -332,9 +337,11 @@
 		<br>
 		<button id="preview" onclick="preview()" class="btn btn-danger">预览效果</button>
 		<br>
-		<span id="busuanzi_container_page_pv">
-			本页总访问量<span id="busuanzi_value_page_pv"></span>次
-		</span>
+		<div class="busuanzi">
+			<span id="busuanzi_container_page_pv">
+				本页总访问量 <span id="busuanzi_value_page_pv"></span> 次
+			</span>
+		</div>
 	</div>
 	<div class="display">
 		<canvas id="canvas" width="1000" height="350"></canvas>
