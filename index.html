@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<link href="http://fonts.css.network/css?family=Noto+Sans:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">
 		::-webkit-scrollbar {
@@ -305,7 +306,7 @@
 			ctx.font = "40px 宋体";
 			ctx.fillText(text3.value, 215, 330);
 			ctx.font = "140px 宋体";
-			ctx.fillRect(70, 175, 140, 140);
+			ctx.fillRect(70, 180, 140, 140);
 			ctx.fillStyle = "white";
 			ctx.fillText(text2.value.charAt(0), 70, 300);
 		}
@@ -330,6 +331,10 @@
 		</form>
 		<br>
 		<button id="preview" onclick="preview()" class="btn btn-danger">预览效果</button>
+		<br>
+		<span id="busuanzi_container_page_pv">
+			本页总访问量<span id="busuanzi_value_page_pv"></span>次
+		</span>
 	</div>
 	<div class="display">
 		<canvas id="canvas" width="1000" height="350"></canvas>
